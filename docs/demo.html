@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>calendar-bot — 画面デモ</title>
+<style>
+  :root{
+    --canvas:#f3f2ee;
+    --ink:#1a1a1a;
+    --muted:#8e8e93;
+    --bezel:#1c1c1e;
+    --chat-bg:#e8ece7;
+    --accent:#06C755;
+    --accent-light:#3DD879;
+    --accent-pale:#E1F7E9;
+    --white:#ffffff;
+    --border:#E5E7EB;
+    --weekend-bg:#FDECEC;
+    --weekend-text:#E5484D;
+    --shared:#3D7FE0;
+    --creator2:#F5A623;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:var(--canvas);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;color:var(--ink);}
+  body{padding:40px 24px;}
+  .gallery{display:flex;gap:36px;justify-content:center;flex-wrap:wrap;max-width:800px;margin:0 auto;}
+  figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px;}
+  figcaption{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.02em;}
+
+  .phone{width:320px;border-radius:36px;background:var(--bezel);padding:10px;box-shadow:0 20px 40px rgba(0,0,0,.18);}
+  .screen{background:var(--chat-bg);border-radius:26px;overflow:hidden;}
+  .statusbar{display:flex;justify-content:space-between;align-items:center;padding:8px 20px 2px;font-size:12px;font-weight:600;color:var(--ink);}
+  .chatheader{display:flex;align-items:center;gap:10px;padding:8px 16px 12px;}
+  .chatheader .avatar{width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .chatheader .name{font-size:14px;font-weight:700;}
+  .chat{padding:6px 12px 16px;display:flex;flex-direction:column;gap:10px;}
+
+  .bubble{width:100%;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.08);background:var(--white);}
+  .bubble-header{padding:14px 16px 12px;color:#fff;}
+  .bubble-header .title{font-size:16px;font-weight:700;}
+  .bubble-header .subtitle{font-size:11px;margin-top:3px;opacity:.9;}
+  .bubble-body{padding:14px 14px 16px;background:var(--chat-bg);display:flex;flex-direction:column;gap:8px;}
+
+  .date-header{display:flex;align-items:center;gap:10px;background:var(--accent);color:#fff;border-radius:10px;padding:9px 12px;font-size:13px;font-weight:700;}
+  .date-header .badge{background:var(--accent-light);border-radius:8px;padding:2px 8px;font-size:10px;font-weight:600;}
+
+  .event-row{display:flex;align-items:stretch;gap:8px;background:#fff;border-radius:8px;padding:8px 10px;}
+  .event-row .bar{width:3px;border-radius:3px;flex:0 0 auto;}
+  .event-row .content{display:flex;align-items:center;gap:6px;flex:1;font-size:12.5px;}
+  .event-row .time{color:var(--muted);font-size:10.5px;flex:0 0 auto;}
+  .event-row .title2{flex:1;font-weight:700;}
+  .event-row .chip{border-radius:6px;padding:2px 7px;font-size:9.5px;color:#fff;font-weight:600;flex:0 0 auto;}
+
+  .footer{display:flex;flex-direction:column;gap:8px;padding:12px 14px 14px;background:#fff;}
+  .btn{border-radius:8px;padding:10px;text-align:center;font-size:13px;font-weight:700;}
+  .btn.primary{background:var(--accent);color:#fff;}
+  .btn.secondary{background:#fff;border:1px solid var(--border);color:var(--ink);}
+
+  .parse-line{background:var(--accent-pale);border-radius:8px;padding:10px 12px;font-size:12.5px;color:var(--ink);line-height:1.7;}
+  .parse-line b{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="gallery">
+
+  <figure>
+    <figcaption>今日の予定</figcaption>
+    <div class="phone"><div class="screen">
+      <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+      <div class="chatheader"><div class="avatar">📅</div><div class="name">カレンダーBot</div></div>
+      <div class="chat">
+        <div class="bubble">
+          <div class="bubble-header" style="background:var(--accent);">
+            <div class="title">📅 今日の予定</div>
+          </div>
+          <div class="bubble-body">
+            <div class="date-header">08/03 月 <span class="badge">今日</span></div>
+            <div class="event-row"><div class="bar" style="background:var(--shared);"></div>
+              <div class="content"><span class="time">09:00</span><span class="title2">オンライン会議</span><span class="chip" style="background:var(--shared);">共通</span></div>
+            </div>
+            <div class="event-row"><div class="bar" style="background:var(--creator2);"></div>
+              <div class="content">🤸<span class="time">19:00</span><span class="title2">ピラティス</span></div>
+            </div>
+            <div class="event-row"><div class="bar" style="background:var(--accent-light);"></div>
+              <div class="content"><span class="time">21:00</span><span class="title2">ゴミ出し（燃えるゴミ）</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </figure>
+
+  <figure>
+    <figcaption>繰り返し予定の登録確認</figcaption>
+    <div class="phone"><div class="screen">
+      <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+      <div class="chatheader"><div class="avatar">📅</div><div class="name">カレンダーBot</div></div>
+      <div class="chat">
+        <div class="bubble" style="align-self:flex-end;background:var(--accent);color:#fff;border-radius:14px 14px 4px 14px;box-shadow:none;">
+          <div style="padding:10px 14px;font-size:13px;">毎週 月,木 19:00-20:00 ゴミ出し 12/31まで</div>
+        </div>
+        <div class="bubble">
+          <div class="bubble-header" style="background:var(--accent);">
+            <div class="title">🔁 繰り返し予定の確認</div>
+          </div>
+          <div class="bubble-body">
+            <div class="parse-line">
+              <b>毎週 月・木</b> 19:00〜20:00<br>
+              <b>ゴミ出し</b><br>
+              終了条件: 2026/12/31まで
+            </div>
+          </div>
+          <div class="footer">
+            <div class="btn primary">登録する</div>
+            <div class="btn secondary">キャンセル</div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </figure>
+
+</div>
+</body>
+</html>
