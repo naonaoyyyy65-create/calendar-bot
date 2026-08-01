@@ -2,6 +2,7 @@
   "name": "calendar-bot",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "description": "Googleカレンダー連携LINE Bot",
   "main": "src/server.js",
   "scripts": {

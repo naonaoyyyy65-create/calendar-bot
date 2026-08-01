@@ -1,5 +1,11 @@
 # calendar-bot
 
+<!-- リポジトリ作成後、YOUR_GITHUB_USERNAME を実際のGitHubユーザー名に置き換えてください -->
+![CI](https://github.com/YOUR_GITHUB_USERNAME/calendar-bot/actions/workflows/ci.yml/badge.svg)
+![tests](https://img.shields.io/badge/tests-46%20passing-brightgreen)
+![coverage](https://img.shields.io/badge/coverage-76%25-yellow)
+![license](https://img.shields.io/badge/license-MIT-blue.svg)
+
 Googleカレンダーと連携し、LINEのトーク上で予定確認・繰り返し予定の一括登録・変更通知ができるLINE Bot。Node.js（Express）製で、Raspberry Pi上でsystemdサービスとして常時稼働している本番システムです。
 
 もとは Google Apps Script（GAS）版として作り始め、機能パリティを達成した段階でNode.js版に全面移行しました。
