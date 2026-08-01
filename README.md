@@ -74,10 +74,16 @@ Googleカレンダーと連携し、LINEのトーク上で予定確認・繰り�
 
 cronでの定期実行（月間カレンダー送信・今日の予定送信・変更チェック・LINE無料枠レポート）が必要な場合は、`deploy/deploy_calendar.ps1`のコメントを参照してください。
 
-## テスト
+## テスト・静的解析
 
 ```
-npm test
+npm test              # ユニットテスト
+npm run test:coverage # カバレッジ計測付き
+npm run lint          # ESLint
 ```
 
-`node:test`（Node.js標準のテストランナー）を使用。LINE APIやGoogle Calendar APIなど外部サービスへの実際の呼び出しはテスト対象外とし、パーサー・変更検知・送信ロジックの分離部分（`pushWith`）などロジックが決定的な部分を中心にユニットテストしています。
+`node:test`（Node.js標準のテストランナー、追加依存なし）を使用。LINE APIやGoogle Calendar APIなど外部サービスへの実際の呼び出しはテスト対象外とし、パーサー・変更検知・送信ロジックの分離部分（`pushWith`）などロジックが決定的な部分を中心にユニットテストしています。
+
+- テスト: 46件 pass
+- カバレッジ（行）: 全体75.95%（純粋関数中心の`changeDetector.js`/`iconInput.js`/`store.js`は100%、外部API呼び出しを含む層は意図的に対象範囲を絞っている）
+- ESLint: 0 errors
